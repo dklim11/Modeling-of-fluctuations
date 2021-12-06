@@ -1,8 +1,8 @@
 import tkinter
 from tkinter.filedialog import *
-from vis import *
-from model import *
-from input import *
+from pendulum_vis import *
+from pendulum_model import *
+from pendulum_input import *
 
 perform_execution = False
 """Флаг цикличности выполнения расчёта"""
@@ -34,7 +34,7 @@ def execution():
     if objects != []:
         recalculate_objects_positions(objects, time_step.get()) 
 
-        """ из model:
+        """ из pendulum_model:
         def recalculate_objects_positions(objects, dt):
     Пересчитывает координаты объектов objects.
     Параметры:
@@ -43,7 +43,7 @@ def execution():
 
         save_objects_positions(objects, physical_time)
 
-        """из input:
+        """из pendulum_input:
         def save_objects_positions(objects, time):
     
     Сохраняет данные о положении тел в файл phys_model.txt   в формате
@@ -54,7 +54,7 @@ def execution():
         **objects** — список объектов планет и звёзд
         **physical_time** — время с начала симуляции
         """
-    for body in objects:
+    for body in pendulum_objects:
         update_object_position(space, body)
         """ из vis:
         def update_object_position(space, body):
@@ -83,7 +83,7 @@ def start_execution():
 
     clear_stats(objects)
 
-    """из input:
+    """из pendulum_input:
     def clear_stats(objects):
     
     Очищает файл phys_model.txt
@@ -142,14 +142,14 @@ def open_file_dialog():
         max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in objects])
         calculate_scale_factor(max_distance)
 
-        """из vis:
+        """из pendulum_vis:
         def calculate_scale_factor(max_distance):
      Вычисляет значение глобальной переменной **scale_factor** по данной характерной длине
     global scale_factor
     scale_factor = 0.4*min(window_height, window_width)/max_distance
     print('Scale factor:', scale_factor)"""
 
-        for obj in objects:
+        for obj in pendulum_objects:
             if obj.type == 'ball':
                 create_ball_image(space, obj)
             if obj.type == 'kernel':
@@ -174,7 +174,7 @@ def save_file_dialog():
     out_filename = asksaveasfilename(filetypes=(("Text file", ".txt"),))
     write_objects_data_to_file(out_filename, objects)
 
-    """из input:
+    """из pendulum_input:
     def write_space_objects_data_to_file(output_filename, space_objects):
     Сохраняет данные о космических объектах в файл.
     Строки должны иметь следующий формат:
