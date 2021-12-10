@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import numpy as np
 """
 Here the gravitational constant 
@@ -26,3 +27,6 @@ def RK_4(dt, t):
     - b*v + omega**2*(x + A*np.sin(phi)) - g*np.cos(phi) + k*(x - x0))
     omega += dt*(g*np.sin(alpha) - omega*k*(x + A*sin(phi)) - 2*omega*(x + A*np.cos(phi)*phi_prime))/(x + A*np.sin(phi))
     return v, omega
+=======
+
+>>>>>>> c6aa63e5ef4007743820f185c4153e2f5725aa70
