@@ -43,7 +43,8 @@ while not finished:
     {vis}
     Euler_equations(pend, t, dt)
     RK_4(pend, t, dt)
-     pygame.display.update()
+    pygame.display.update()
+    screen.fill(black)
 
 pygame.quit()
 
