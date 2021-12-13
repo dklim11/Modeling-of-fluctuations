@@ -14,7 +14,8 @@ objects = []
 
 def main():
     FPS = 30
-    
+    t+=dt 
+    dt=0.001
 
     ended = False
     finished = False
@@ -39,6 +40,7 @@ if not started_already:
             clicked = False
 
 while not finished:
+
     clicked.tick(dt) (t += dt)
     {vis}
     Euler_equations(pend, t, dt)
