@@ -33,17 +33,17 @@ def draw_pendulum(s, l, alpha):
     h = (300 / l) * 30   #height of the triangles which make up the spring
     line(screen, grey, [screen_width/2, 40], [screen_width/2 + x1, y1 + 40], 4)    #draw the rod
     line(screen, white, [screen_width/8, 40], [screen_width*7/8, 40], 4)   #draw ceiling. 40 is the ceiling's displacement from the top
-    spring = []   #list of the spring details' coordinates
+    spring = []   #list of coordinates of the ends of the spring links
+    n = 15   #number of the spring's links. Number of their ends is (n+1)
     spring.append([s * sin(alpha) + screen_width/2, s * cos(alpha) + 40])
-    n = 20   #number of the spring's details
-    for i in range(n-1):
-        spring.append([(-1)**i * h * cos(alpha) + (s + (i+1)/n*l) * sin(alpha) + screen_width/2, (-1)**(i+1) * h * sin(alpha) + (s + (i+1)/n*l) * cos(alpha) + 40])
+    spring.append([h * cos(alpha) + (s + 0.5/(n-1)*l) * sin(alpha) + screen_width/2, -h * sin(alpha) + (s + 0.5/(n-1)*l) * cos(alpha) + 40])
+    for i in range(n-2):
+        spring.append([(-1)**(i+1) * h * cos(alpha) + (s + (i+1.5)/(n-1)*l) * sin(alpha) + screen_width/2, (-1)**i * h * sin(alpha) + (s + (i+1.5)/(n-1)*l) * cos(alpha) + 40])
     spring.append([x + screen_width/2, y + 40]) 
     lines(screen, blue, False, spring, 3)      #draw the spring
     circle(screen, green, [(s + l + 20) *  sin(alpha) + screen_width/2, (s + l + 20) *  cos(alpha) + 40], 20)   #draw the pendulum's body
 
-draw_pendulum(100, 350, 0)
-draw_pendulum(0, 500,  pi/6)
+
 draw_pendulum(30, 300, - pi/8)
 
 pygame.display.update()
