@@ -32,10 +32,10 @@ def draw_pendulum(s, l, alpha):
     y1 = 500 * cos(alpha)     #coordinates of the rod's end
     h = (300 / l) * 30   #height of the triangles which make up the spring
     line(screen, grey, [screen_width/2, 40], [screen_width/2 + x1, y1 + 40], 4)    #draw the rod
-    line(screen, white, [screen_width/8, 40], [screen_width*7/8, 40], 4)   #draw ceiling
-    spring = []
+    line(screen, white, [screen_width/8, 40], [screen_width*7/8, 40], 4)   #draw ceiling. 40 is the ceiling's displacement from the top
+    spring = []   #list of the spring details' coordinates
     spring.append([s * sin(alpha) + screen_width/2, s * cos(alpha) + 40])
-    n = 20
+    n = 20   #number of the spring's details
     for i in range(n-1):
         spring.append([(-1)**i * h * cos(alpha) + (s + (i+1)/n*l) * sin(alpha) + screen_width/2, (-1)**(i+1) * h * sin(alpha) + (s + (i+1)/n*l) * cos(alpha) + 40])
     spring.append([x + screen_width/2, y + 40]) 
