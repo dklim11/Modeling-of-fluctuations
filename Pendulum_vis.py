@@ -1,6 +1,6 @@
 import pygame
 from pygame.draw import *
-import numpy as np
+from numpy import sin, cos, pi
 
 pygame.init()
 
@@ -26,25 +26,25 @@ def draw_pendulum(s, l, alpha):
     l - length of the spring at the moment
     alpha - angle of deflection of the rod from the vertical
     '''
-    x = (l + s) * np.sin(alpha)
-    y = (l + s) * np.cos(alpha)    #coordinates of the spring's end
-    x1 = 500 * np.sin(alpha)
-    y1 = 500 * np.cos(alpha)     #coordinates of the rod's end
+    x = (l + s) * sin(alpha)
+    y = (l + s) * cos(alpha)    #coordinates of the spring's end
+    x1 = 500 * sin(alpha)
+    y1 = 500 * cos(alpha)     #coordinates of the rod's end
     h = (300 / l) * 30   #height of the triangles which make up the spring
     line(screen, grey, [screen_width/2, 40], [screen_width/2 + x1, y1 + 40], 4)    #draw the rod
     line(screen, white, [screen_width/8, 40], [screen_width*7/8, 40], 4)   #draw ceiling
-    lines(screen, blue, False, [[s * np.sin(alpha) + screen_width/2, s * np.cos(alpha) + 40], 
-                                [h * np.cos(alpha) + (s + 0.1*l) * np.sin(alpha) + screen_width/2, -h * np.sin(alpha) + (s + 0.1*l) * np.cos(alpha) + 40],
-                                [-h * np.cos(alpha) + (s + 0.3*l) * np.sin(alpha) + screen_width/2, h * np.sin(alpha) + (s + 0.3*l) * np.cos(alpha) + 40],
-                                [h * np.cos(alpha) + (s + 0.5*l) * np.sin(alpha) + screen_width/2, -h * np.sin(alpha) + (s + 0.5*l) * np.cos(alpha) + 40],
-                                [-h * np.cos(alpha) + (s + 0.7*l) * np.sin(alpha) + screen_width/2, h * np.sin(alpha) + (s + 0.7*l) * np.cos(alpha) + 40],
-                                [h * np.cos(alpha) + (s + 0.9*l) * np.sin(alpha) + screen_width/2, -h * np.sin(alpha) + (s + 0.9*l) * np.cos(alpha) + 40],
-                                [x + screen_width/2, y + 40]], 3)      #draw the spring
-    circle(screen, green, [(s + l + 20) * np.sin(alpha) + screen_width/2, (s + l + 20) * np.cos(alpha) + 40], 20)   #draw the pendulum's body
+    spring = []
+    spring.append([s * sin(alpha) + screen_width/2, s * cos(alpha) + 40])
+    n = 20
+    for i in range(n-1):
+        spring.append([(-1)**i * h * cos(alpha) + (s + (i+1)/n*l) * sin(alpha) + screen_width/2, (-1)**(i+1) * h * sin(alpha) + (s + (i+1)/n*l) * cos(alpha) + 40])
+    spring.append([x + screen_width/2, y + 40]) 
+    lines(screen, blue, False, spring, 3)      #draw the spring
+    circle(screen, green, [(s + l + 20) *  sin(alpha) + screen_width/2, (s + l + 20) *  cos(alpha) + 40], 20)   #draw the pendulum's body
 
 draw_pendulum(100, 350, 0)
-draw_pendulum(0, 500, np.pi/6)
-draw_pendulum(30, 300, -np.pi/8)
+draw_pendulum(0, 500,  pi/6)
+draw_pendulum(30, 300, - pi/8)
 
 pygame.display.update()
 clock = pygame.time.Clock()
