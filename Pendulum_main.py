@@ -1,56 +1,46 @@
 import pygame
 from pygame.draw import *
-import numpy as np
+from numpy import cos, sin, pi, abs
+from Pendulum_objects import pendulum
+from Pendulum_vis import *
+from Pendulum_input import *
+from Pendulum_model import *
+
 pygame.init()
 
-from pendulum_vis import *
-from pendulum_model import *
-from pendulum_input import *
-from pendulum_objects import *
+FPS = 200
+t = 0
+dt = 0.001
+screen_width = 800
+screen_height = 800
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+blue = (0, 184, 217)
+grey = (133, 150, 150)
+white = (255, 255, 255)
+green = (153, 255, 153)
+dark_green = (80, 200, 120)
+yellow = (255, 255, 0)
+purple = (128, 0, 255)
+black = (0, 0, 0)
 
 
-objects = []
-"""Список объектов в системе."""
+pend = pendulum(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+read_parameters_of_pendulum_from_file('Desktop\Labs Python\Modeling-of-fluctuations\input.txt', pend)
+g = 10000
 
-def main():
-    FPS = 30
-    t+=dt 
-    dt=0.001
-
-    ended = False
-    finished = False
-
-    screen_width = 800
-    screen_height = 800                   
-    screen = pygame.display.set_mode((screen_width, screen_height))
-
-    blue = (0, 184, 217)
-    grey = (133, 150, 150)
-    white = (255, 255, 255)
-    green = (153, 255, 153)
-    dark_green = (80, 200, 120)
-    yellow = (255, 255, 0)
-    purple = (128, 0, 255)
-    black = (0, 0, 0)
-
-
-
-if not started_already:
-            screen.fill(black)
-            clicked = False
+clock = pygame.time.Clock()
+finished = False
 
 while not finished:
-
-    clicked.tick(dt) (t += dt)
-    {vis}
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+    draw_pendulum(pend.s, pend.l, pend.alpha)
+    pygame.display.update()
     Euler_equations(pend, t, dt)
     RK_4(pend, t, dt)
-    pygame.display.update()
+    t += dt
     screen.fill(black)
-
 pygame.quit()
-
-if __name__ == "__main__":
-    main()
-
-
