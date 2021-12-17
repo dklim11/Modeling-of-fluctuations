@@ -3,7 +3,7 @@ from numpy import sin, cos
 Here the gravitational constant 
 (meters per second) is defined
 """
-g = 9.8
+g = 10000
 
 def Euler_equations(pend, t, dt):
     """
@@ -11,8 +11,12 @@ def Euler_equations(pend, t, dt):
     next step
     """
     phi = pend.A4*t**4 + pend.B*t**3 + pend.C*t**2 + pend.D*t + pend.E
-    pend.s = pend.A*sin(phi)
+    phi_prime = 4*pend.A4*t**3 + 3*pend.B*t**2 + 2*pend.C*t + pend.D
+    pend.s = pend.A*abs(sin(phi))
     pend.l += dt*pend.v 
+    if pend.l <= 0:
+        pend.l = -pend.l
+        pend.v = -pend.v
     pend.alpha += dt*pend.w
 
 def RK_4(pend, t, dt):
@@ -27,5 +31,7 @@ def RK_4(pend, t, dt):
     phi = pend.A4*t**4 + pend.B*t**3 + pend.C*t**2 + pend.D*t + pend.E
     phi_prime = 4*pend.A4*t**3 + 3*pend.B*t**2 + 2*pend.C*t + pend.D 
     phi_dprime = 12*pend.A4*t**2 + 6*pend.B*t + 2*pend.C
-    pend.v += dt*(-pend.mu_m*pend.v+(phi_prime**2)*(pend.l+pend.A*sin(phi))+g*cos(pend.alpha)-pend.k*(pend.l - pend.l0)-pend.A*phi_dprime*cos(phi)+pend.A*(phi_prime**2)*sin(phi))
-    pend.w += dt*(pend.mu_m*pend.w - (g*sin(pend.alpha)+2*(pend.v + pend.A*cos(phi)*phi_prime))/(pend.l + pend.A*sin(phi)))
+    pend.s = pend.A*abs(sin(phi))
+    pend.v += dt*(-pend.mu_m*pend.v + pend.A*(sin(phi)*(phi_prime**2) - cos(phi)*phi_dprime) + pend.w**2*(pend.l + pend.s) 
+    + g*cos(pend.alpha) - pend.k*(pend.l - pend.l0))
+    pend.w += dt*(-pend.mu_m*pend.w - (g*sin(pend.alpha) + 2*pend.w)/(pend.l + pend.s))
