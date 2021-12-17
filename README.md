@@ -8,7 +8,7 @@ Input consists of several variables:
 2) l - length of spring at the moment. l may be changed. Initially l = start-up length of the spring
 3) k - asperity of spring
 4) A - amplitude of motor fluctuations
-5) s - coordinate of the motor at the moment. Initially s = s0 - the start-up coordinate
+5) s - coordinate of the motor at the moment
 6) alpha - the deflection angle. Initially alpha = alpha0 - the start-up angle
 7) v - speed of body along the rod. Initially v = v0 - start-up speed
 8) w - angular speed of body. Initially w = w0 - start-up angular speed
@@ -17,6 +17,6 @@ Input consists of several variables:
 11) B - coefficient at t^3
 12) C - coefficient at t^2
 13) D - coefficient at t
-14) E - free member
+14) E - free member. It specifies start-up coordinate of the motor
 fi is function of time. fi specifies phase change of motor. fi is polynomial of degree 4. fi = A_4t^4 + Bt^3 + Ct^2 + Dt + E 
 Spring is unloaded in t = 0.

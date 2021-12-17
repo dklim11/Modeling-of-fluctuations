@@ -18,7 +18,7 @@ def parse_parameters(line, pend):
     l - length of spring at the moment. l may be changed. Initially l = start-up length of the spring
     k - asperity of spring
     A - amplitude of motor fluctuations
-    s - coordinate of the motor at the moment. Initially s = s0 - the start-up coordinate
+    s - coordinate of the motor at the moment.
     alpha - the deflection angle. Initially alpha = alpha0 - the start-up angle
     v - speed of body along the rod. Initially v = v0 - start-up speed
     w - angular speed of body. Initially w = w0 - start-up angular speed
@@ -27,7 +27,7 @@ def parse_parameters(line, pend):
     B - coefficient at t^3
     C - coefficient at t^2
     D - coefficient at t
-    E - free member
+    E - free member. It specifies the start-up coordinate of the motor
     fi is function of time. fi specifies phase change of motor. fi is polynomial of degree 4. fi = A_4t^4 + Bt^3 + Ct^2 + Dt + E 
     
     Parameters of function:
