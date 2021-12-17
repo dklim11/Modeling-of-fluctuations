@@ -28,13 +28,15 @@ def draw_pendulum(s, l, alpha):
     '''
     x = (l + s) * sin(alpha)
     y = (l + s) * cos(alpha)    #coordinates of the spring's end
-    x1 = 500 * sin(alpha)
-    y1 = 500 * cos(alpha)     #coordinates of the rod's end
+    x1 = 650 * sin(alpha)
+    y1 = 650 * cos(alpha)     #coordinates of the rod's end
     h = (300 / l) * 30   #height of the triangles which make up the spring
+    if l < 75:
+        h = 120
     line(screen, grey, [screen_width/2, 40], [screen_width/2 + x1, y1 + 40], 4)    #draw the rod
     line(screen, white, [screen_width/8, 40], [screen_width*7/8, 40], 4)   #draw ceiling. 40 is the ceiling's displacement from the top
     spring = []   #list of coordinates of the ends of the spring links
-    n = 15   #number of the spring's links. Number of their ends is (n+1)
+    n = 18   #number of the spring's links. Number of their ends is (n+1)
     spring.append([s * sin(alpha) + screen_width/2, s * cos(alpha) + 40])
     spring.append([h * cos(alpha) + (s + 0.5/(n-1)*l) * sin(alpha) + screen_width/2, -h * sin(alpha) + (s + 0.5/(n-1)*l) * cos(alpha) + 40])
     for i in range(n-2):
@@ -44,7 +46,7 @@ def draw_pendulum(s, l, alpha):
     circle(screen, green, [(s + l + 20) *  sin(alpha) + screen_width/2, (s + l + 20) *  cos(alpha) + 40], 20)   #draw the pendulum's body
 
 
-draw_pendulum(30, 300, - pi/8)
+draw_pendulum(30, 60, - pi/8)
 
 pygame.display.update()
 clock = pygame.time.Clock()
