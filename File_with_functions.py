@@ -123,7 +123,7 @@ def draw_pendulum(s, l, alpha):
 
 
 pend = pendulum(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-read_parameters_of_pendulum_from_file('C:/Users/user/Modeling-of-fluctuations/input.txt', pend)
+read_parameters_of_pendulum_from_file('Desktop/Labs Python/Modeling-of-fluctuations/input.txt', pend)
 
 """
 Here the gravitational constant 
@@ -169,7 +169,7 @@ t_sol = []
 x_sol = []
 y_sol = []
 
-while not finished:
+while not finished:                   # This is the main cycle. It will visualize fluctuations, recalculate parameters, and fill lists for further plotting
     clock.tick(FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -180,17 +180,24 @@ while not finished:
     RK_4(pend, t, dt)
     screen.fill(black)
     t_sol.append(t)
-    x_sol.append((pend.s + pend.l)*sin(pend.alpha))
-    y_sol.append((pend.s + pend.l)*cos(pend.alpha))
+    x_sol.append((pend.s + pend.l) * sin(pend.alpha))
+    y_sol.append((pend.s + pend.l) * cos(pend.alpha))
     t += dt
 pygame.quit()
 
-fig, axs = plt.subplots(2)
-fig.suptitle('Coordinates as functions of time')
-axs[0].plot(t_sol, x_sol)
-axs[0].set_title('x')
-axs[1].plot(t_sol, y_sol)
-axs[1].set_title('y')
+#subplot 1
+sp = plt.subplot(2, 1, 1) 
+plt.plot(t_sol, x_sol)
+plt.grid(True)
+plt.title(r'$x(t)$')
+plt.ylabel(r'$x$')
 
-plt.tight_layout()
+#subplot 2
+sp = plt.subplot(2, 1, 2)
+plt.plot(t_sol, y_sol)
+plt.grid(True)
+plt.title(r'$y(t)$')
+plt.xlabel(r'$t$')
+plt.ylabel(r'$y$')
+
 plt.show()
