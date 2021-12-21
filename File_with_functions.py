@@ -123,7 +123,7 @@ def draw_pendulum(s, l, alpha):
 
 
 pend = pendulum(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-read_parameters_of_pendulum_from_file('Desktop/Labs Python/Modeling-of-fluctuations/input.txt', pend)
+read_parameters_of_pendulum_from_file('C:/Users/user/Modeling-of-fluctuations/input.txt', pend)
 
 """
 Here the gravitational constant 
@@ -203,5 +203,6 @@ plt.grid(True)
 plt.title(r'$y(t)$')
 plt.xlabel(r'$t$')
 plt.ylabel(r'$y$')
+plt.tight_layout()
 
 plt.show()
