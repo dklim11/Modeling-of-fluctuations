@@ -1,3 +1,0 @@
-#l0 l k A s alpha v w mu/m A4 B C D E
-
-350 350 400 0 0 0.4 750 0 0.5 0 0 0 0 0
