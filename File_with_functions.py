@@ -169,7 +169,11 @@ t_sol = []
 x_sol = []
 y_sol = []
 
-while not finished:                   # This is the main cycle. It will visualize fluctuations, recalculate parameters, and fill lists for further plotting
+"""
+This is the main cycle. It makes visualisation of fluctuations, 
+recalculating parameters, and creating lists for further plotting
+"""
+while not finished:        
     clock.tick(FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
