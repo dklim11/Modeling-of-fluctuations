@@ -20,3 +20,5 @@ Input consists of several variables:
 14) E - free member. It specifies start-up coordinate of the motor
 fi is function of time. fi specifies phase change of motor. fi is polynomial of degree 4. fi = A_4t^4 + Bt^3 + Ct^2 + Dt + E 
 Spring is unloaded in t = 0.
+
+Note: to launch the code correctly, check the path to file input.txt in File_with_functions.py.
